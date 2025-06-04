@@ -1,0 +1,1 @@
+# helyes-r-s-latlak-t-
