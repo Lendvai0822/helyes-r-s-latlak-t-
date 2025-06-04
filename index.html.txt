@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>18. századi helyesírás átalakító</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-yellow-50 min-h-screen flex items-center justify-center p-6">
+  <div class="bg-white rounded-2xl shadow-xl max-w-2xl w-full p-8">
+    <h1 class="text-2xl font-bold mb-4 text-center">18. századi helyesírás átalakító</h1>
+    <textarea id="inputText" class="w-full border rounded p-3 mb-4 h-40" placeholder="Írd be a szöveget..."></textarea>
+    <button onclick="convertText()" class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded w-full">
+      Átalakítás
+    </button>
+    <h2 class="text-lg font-semibold mt-6 mb-2">Átalakított szöveg:</h2>
+    <div id="outputText" class="bg-gray-100 border rounded p-3 min-h-[5rem]"></div>
+  </div>
+
+  <script>
+    function convertText() {
+      const input = document.getElementById("inputText").value;
+
+      const rules = [
+        [/cs/g, 'ts'],
+        [/c/g, 'cz'],
+        [/ly/g, 'lly'],
+        [/j/g, 'gy'],
+        [/\bés\b/g, 's'],
+        [/\bmiért\b/g, 'miértet'],
+        [/sz/g, 'ſz'], // hosszú s
+      ];
+
+      let output = input;
+      rules.forEach(([pattern, replacement]) => {
+        output = output.replace(pattern, replacement);
+      });
+
+      document.getElementById("outputText").innerText = output;
+    }
+  </script>
+</body>
+</html>
